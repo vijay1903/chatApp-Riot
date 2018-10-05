@@ -1,0 +1,179 @@
+/* navibar */
+.navbar {
+    font-size:1rem;
+    height: 50px;
+    position:fixed;
+    background-color: lightgray;
+    top:0px;
+    width:100%;
+    display: inline-flex;
+    color:black;
+    vertical-align: middle;
+    padding:5px;
+}
+.navbar div{
+    width: inherit;
+}
+.title {
+    vertical-align: middle;
+    margin: 10px;
+    margin-right: 12vw;
+}
+.navbar-input {
+    border-radius: 30px;
+    position: relative;
+    left: 0px;
+    width: 60vw;
+    font-size: 1rem;
+    padding: 8px 10px;
+    transition: all 0.3s linear;
+}
+.navbar-input:focus {
+    outline: none;
+    box-shadow: 0 0 16px 3px #00fff3;
+}
+.btn {
+    background-color: rgb(38, 177, 231);
+    margin: 5px;
+    padding: 5px;
+    font-size: 0.8rem;
+    color: black;
+    border-radius: 25px;
+    transition: all 0.2s linear;
+    box-shadow: 2px 2px 3px black;
+    border: 1px solid rgb(96, 200, 241);
+}
+
+.btn:hover{
+    background-color: skyblue;
+    box-shadow: 2px 2px 10px black;
+}
+.dropdown {
+    width: inherit;
+    padding: 5px 20px;
+}
+.dropdown-list {
+    display: none;
+}
+.btn-dropdown {
+    float: right;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 1rem;
+    margin: 2px 20px;
+}
+
+/* sidenav */
+sidenav{
+    width:20vw;
+    height:100vh;
+    position:fixed;
+    margin-top:50px;
+    background-color: lightgray;
+}
+.sidenav-input{
+    width: 85%;
+    margin: 10px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-radius: 20px;
+    transition: all 0.5s linear;
+}
+
+.sidenav-input:focus{
+    outline:none;
+    box-shadow: 0 0 5px 7px skyblue;
+}
+.userWrap{
+    height:50vh;
+    overflow: auto;
+}
+.sidenav-list {
+    list-style: none;
+    padding: 0px 15px;
+    line-height: 2rem;
+}
+
+.sidenav-list li button {
+    padding: 10px 20px;
+    width: 100%;
+    margin: 5px;
+    border-radius: 10px;
+    background: lavenderblush;
+    font-size: 1rem;
+    text-align: left;
+    transition: all 0.3s linear;
+}
+.sidenav-list li button:hover {
+    box-shadow: 0 0 10px 5px #f1c0d4;
+}
+
+.sidenav-footer {
+    width: 20vw;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+}
+
+.sidenav-footer h6{
+    margin: 5px;
+}
+
+/* main */
+main {
+    position: absolute;
+    margin-left: 20vw;
+    margin-top: 50px;
+    /* padding: 2vw; */
+    width: 79vw;
+    height: 86vh;
+}
+.chatWrapper{
+    width:100%;
+    overflow-y:auto;
+    /* border:1px solid red; */
+    height: 100%;
+}
+/* .chats {
+    border:1px solid black;
+} */
+.message-form {
+    width:100%;
+    position: fixed;
+    bottom: 0;
+}
+.message-input{
+    font-size : 1rem;
+    border-radius: 25px;
+    width: 72%;
+    padding: 8px;
+    margin: 8px;
+}
+
+.btn-send{
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.chat-list{
+    list-style: none;
+    padding: 0px 10px;
+}
+
+.chat-list-item{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding : 10px;
+    margin : 10px;
+    line-height: 1rem;
+}
+
+.chat-sent {
+    margin-left: 20vw;
+    text-align: right;
+}
+.chat-received {
+    margin-right: 20vw;
+    text-align: left;
+}

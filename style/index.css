@@ -1,0 +1,76 @@
+body {
+    border: 2px darkslategray double;
+    padding: 0vw;
+    margin: 5vh 20vw;
+    border-radius: 25px;
+}
+login-signup #selector {
+    text-align: center;
+}
+
+login, signup, forgot {
+    display: none;
+}
+
+.btn {
+    background-color: rgb(38, 177, 231);
+    margin: 5px;
+    padding: 5px;
+    font-size: 0.8rem;
+    color: black;
+    border-radius: 25px;
+    transition: all 0.2s linear;
+    box-shadow: 2px 2px 3px black;
+    border: 1px solid rgb(96, 200, 241);
+}
+.btn-xl{
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+}
+.btn-danger{
+    background-color: darkred;
+    color: white!important;
+}
+.btn-danger:hover{
+    background-color: rgb(182, 4, 4)!important;
+}
+.btn-block{
+    width:100%;
+}
+.btn:hover{
+    background-color: skyblue;
+    box-shadow: 2px 2px 10px black;
+}
+
+form {
+    border: 3px solid darkgrey;
+    border-radius: 25px;
+    margin: 2vw;
+    padding: 50px 70px;
+    display: inline-table;
+    position: relative;
+    width: 40vw;
+}
+
+form label {
+    font-size: 1.5rem;
+    font-style: oblique;
+    line-height: 1.5rem;
+}
+
+form input {
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+    padding: 5px;
+    margin: 10px 0px;
+    width: 100%;
+}
+
+form h2{
+    text-align: center;
+    font-size: 2rem;
+}
+
+form a{
+    text-decoration-color: blue;
+}
