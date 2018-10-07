@@ -15,16 +15,6 @@ window.addEventListener('load', function(){
     }
 })
 
-
-// var watched_groups = [];
-// chatRef.get().then((groups)=>{
-//     groups.forEach(group => {
-//         if(group.data().members.indexOf(usernameOfUser) != -1){
-//             watched_groups.push(group.id);
-//         }
-//     });
-// })
-
 var watchFriend = function(friend){
     chatRef
     .where('members','array-contains',usernameOfUser)
@@ -40,24 +30,17 @@ var watchFriend = function(friend){
     })
 }
 
-// userRef.get().then(function(querySnapshot) {
-//     querySnapshot.forEach(function(doc) {
-//         // doc.data() is never undefined for query doc snapshots
-//         console.log(doc.id, " => ", doc.data());
-//         document.getElementById("firestore").innerHTML += doc.id+ " => " + doc.data().Name+"<br>";
-//     });
-// }).catch(function(error){
-//     console.log(error);
-// });
-
-var getAllUsers = function(){
+var getAllUsers = function(term){
     userRef
     .get()
-    .then(function(querySnapshot) {   
+    .then(function(querySnapshot) {
+        document.getElementById('user_list').innerHTML = '';   
         querySnapshot.forEach(function(doc) {
             if(doc.data().name != getCookie('name')){
                 var friend = doc.data().username;
-                document.getElementById('user_list').innerHTML += '<li><button onclick="createGroup(\''+friend+'\')" >'+doc.data().name+'</button></li>';
+                if(friend.match(term) || term == ''){
+                    document.getElementById('user_list').innerHTML += '<li value="'+friend+'"><button onclick="createGroup(\''+friend+'\')" >'+doc.data().name+'</button></li>';
+                }
             }
         });
     })
@@ -66,7 +49,7 @@ var getAllUsers = function(){
     });
 }
 
-var groupId = '';
+// var groupId = '';
 var createGroup = function(friend){
     var groupFound = false;
     chatRef
@@ -77,7 +60,8 @@ var createGroup = function(friend){
             // console.log(group.data().members);
             if(group.data().members.indexOf(friend) != -1){
                 console.log('Group found with these members :', group.data().members);
-                groupId = group.id;
+                // groupId = group.id;
+                setCookie('groupId',group.id,24,'/');
                 // console.log(groupId);
                 groupFound = true;
                 // getChats(group.id);
@@ -88,7 +72,8 @@ var createGroup = function(friend){
                 members: [usernameOfUser,friend]
             }).then(function(group){
                 console.log("New group created with id :",group.id);
-                groupId = group.id;
+                // groupId = group.id;
+                setCookie('groupId',group.id,24,'/');
                 // getChats(group.id);
             }).catch((err)=>{
                 console.log("Error creating group : ", err);
@@ -122,7 +107,7 @@ function updateUser(id, field, value){
     });
 }
 
-function getChats(group_id) {
+function getChats(group_id, term) {
     chatRef
     .doc(group_id)
     .get()
@@ -131,10 +116,12 @@ function getChats(group_id) {
             console.log('Messages for group: ', group.data().members);
             document.getElementById('chats').innerHTML = '';
             group.data().messages.forEach(element => {
-                if(element.sender == usernameOfUser)
-                    document.getElementById('chats').innerHTML += '<li class=\"chat-list-item chat-sent\">'+element.text+'<br><sub>'+new Date(element.sentAt.seconds)+'</sub></li>';
+                if(element.text.match(term) || term == ''){
+                    if(element.sender == usernameOfUser)
+                        document.getElementById('chats').innerHTML += '<li class=\"chat-list-item chat-sent\">'+element.text+'<br><sub>'+new Date(element.sentAt.seconds)+'</sub></li>';
                     else
-                    document.getElementById('chats').innerHTML += '<li class=\"chat-list-item chat-received\">'+element.text+'<br><sub>'+new Date(element.sentAt.seconds)+'</sub></li>';
+                        document.getElementById('chats').innerHTML += '<li class=\"chat-list-item chat-received\">'+element.text+'<br><sub>'+new Date(element.sentAt.seconds)+'</sub></li>';
+                }
             });
         } else {
             // window.alert("No message for this group.");
@@ -169,8 +156,8 @@ getAllUsers();
 chatForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     // console.log(chatForm.text.value);
-    if(groupId){
-        sendChat(groupId,usernameOfUser,chatForm.text.value);
+    if(getCookie('groupId')){
+        sendChat(getCookie('groupId'),usernameOfUser,chatForm.text.value);
         chatForm.text.value = '';
     } else {
         window.alert('Please select a friend.');
@@ -183,4 +170,14 @@ var logOut = function(){
     deleteCookie('email');
     // deleteSession(usernameOfUser);
     window.open('/','_self');
+}
+
+function filterUser() {
+    var term = document.getElementById('searchUser').value;
+    getAllUsers(term);
+}
+
+function filterChat() {
+    var term = document.getElementById('searchChat').value;
+    getChats(getCookie('groupId'),term);
 }

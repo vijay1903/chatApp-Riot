@@ -1,8 +1,10 @@
 body {
-    border: 2px darkslategray double;
+    box-shadow: 0px 0px 10px 5px cornflowerblue;
     padding: 0vw;
     margin: 5vh 20vw;
-    border-radius: 25px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    min-height: 80vh;
 }
 login-signup #selector {
     text-align: center;
@@ -13,15 +15,13 @@ login, signup, forgot {
 }
 
 .btn {
-    background-color: rgb(38, 177, 231);
     margin: 5px;
     padding: 5px;
     font-size: 0.8rem;
     color: black;
-    border-radius: 25px;
+    border-radius: 5px;
     transition: all 0.2s linear;
-    box-shadow: 2px 2px 3px black;
-    border: 1px solid rgb(96, 200, 241);
+    box-shadow: 0px 0px 10px 5px whitesmoke;
 }
 .btn-xl{
     font-size: 1rem;
@@ -38,14 +38,14 @@ login, signup, forgot {
     width:100%;
 }
 .btn:hover{
-    background-color: skyblue;
-    box-shadow: 2px 2px 10px black;
+    /* background-color: skyblue; */
+    box-shadow: 2px 2px 5px black;
 }
 
 form {
-    border: 3px solid darkgrey;
-    border-radius: 25px;
-    margin: 2vw;
+    box-shadow : 0px 0px 10px 10px rgb(187, 211, 249);
+    border-radius: 5px;
+    margin: 4vw;
     padding: 50px 70px;
     display: inline-table;
     position: relative;

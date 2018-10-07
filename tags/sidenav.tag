@@ -1,5 +1,5 @@
 <sidenav>
-    <input class="sidenav-input" type="text" placeholder="Search">
+    <input class="sidenav-input" id="searchUser" type="text" placeholder="Search" onchange="filterUser()">
     <h3 style="text-align: center;margin: 5px;">Registered Users</h3>
     <div class="userWrap">
         <ul class="sidenav-list" id="user_list"> 

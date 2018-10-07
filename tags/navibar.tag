@@ -1,14 +1,11 @@
 <navibar>
     <nav class="navbar">
         <h2 class="title">ChatsApp</h2>
+        <input class="navbar-input" id="searchChat" type="text" placeholder="Search in chats" onchange='filterChat()'/>
         <div class="dropdown">
-            <input class="navbar-input" type="text" placeholder="Search in chats"/>
-            <button class="btn btn-dropdown" id="usernameBtn">&nbsp;&nabla;</button>
-            <ul class="dropdown-list">
-                <li>Account</li>
-                <li>Settings</li>
-                <li><button class="btn btn-nav" onclick="logOut()">Logout</button></li>
-            </ul>
+            <button class="btn btn-dropdown" id="usernameBtn" onclick="account()"></button>
+            <button class="btn btn-dropdown" onclick="settings()">Settings</button>
+            <button class="btn btn-dropdown btn-danger" onclick="logOut()">Logout</button>
         </div>
     </nav>
 </navibar>
