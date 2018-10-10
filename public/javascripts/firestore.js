@@ -1,11 +1,11 @@
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBhF_TRln92yhRWzCGr_tUnC5ZV7XgoeIU",
-    authDomain: "chatsapp-60ded.firebaseapp.com",
-    databaseURL: "https://chatsapp-60ded.firebaseio.com",
+    apiKey: "***********",
+    authDomain: "**************",
+    databaseURL: "************",
     projectId: "chatsapp-60ded",
-    storageBucket: "chatsapp-60ded.appspot.com",
-    messagingSenderId: "884778330923"
+    storageBucket: "*************",
+    messagingSenderId: "**************"
 };
 var app = firebase.initializeApp(config);
 const db = firebase.firestore(app);
