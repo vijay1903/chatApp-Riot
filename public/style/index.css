@@ -53,7 +53,15 @@ form {
 
 .close {
     float: right;
+    border-radius: 25px;
+    height: 25px;
+    width: 25px;
+    transition: all 0.3s linear;
 }
+.close:hover{
+    box-shadow: 0px 0px 15px black;
+}
+
 
 form label {
     font-size: 1.5rem;

@@ -45,7 +45,11 @@ var watchGroup = function(groupId){
 }
 
 function toggleTab(tab){
-    var tabs = ['main','account','group'];
+    var tabs = [];
+    if(window.outerWidth < 600)
+        tabs = ['main','account','group','sidenav'];
+    else
+        tabs = ['main','account','group'];
     tabs.forEach(t => {
         if(tab == t) {
                 document.querySelector(t).style.display = 'initial';
@@ -59,12 +63,14 @@ var getAllUsers = function(term){
     userRef
     .get()
     .then(function(querySnapshot) {
-        document.getElementById('user_list').innerHTML = '';   
+        document.getElementById('user_list').innerHTML = '';
+        document.getElementById('group_members').innerHTML = '';   
         querySnapshot.forEach((doc)=> {
             if(doc.data().name != getCookie('name')){
                 var friend = doc.data().username;
                 if(doc.data().name.match(term) || term == ''){
                     document.getElementById('user_list').innerHTML += '<li value="'+friend+'"><button onclick="createGroup([\''+friend+'\'],2)" >'+doc.data().name+'</button></li>';
+                    document.getElementById('group_members').innerHTML += '<option value="'+doc.data().username+'">'+doc.data().name+'</option>';
                 }
             }
         });
@@ -278,7 +284,7 @@ function getChats(group_id, term) {
                     } else {
                         string += '<li class=\"chat-list-item chat-received\">'+element.text+'<br><sub>';
                         if(group.data().members.length > 2){
-                            string += '~'+element.sender;
+                            string += '~'+element.sender+" ";
                         }
                         string += new Date(element.sentAt.toDate()).toLocaleString()+'</sub></li>';
                     }
@@ -382,13 +388,11 @@ function filterChat() {
 
 document.querySelector("#collapseBtn").addEventListener('click',(e)=>{
     e.preventDefault();
-    var sidenav = document.querySelector("sidenav").style.visibility;
-    if(sidenav == 'hidden'){
-        document.querySelector("sidenav").style.visibility = 'initial';
-        document.querySelector("main").style.visibility = 'hidden';
+    var sidenav = document.querySelector("sidenav").style.display;
+    if(sidenav == 'none'){
+        toggleTab('sidenav');
     } else {
-        document.querySelector("sidenav").style.visibility = 'hidden';
-        document.querySelector("main").style.visibility = 'initial';
+        toggleTab('main');
     }
 })
 
@@ -398,20 +402,7 @@ function account() {
 }
 
 function makeGroup(){
-    toggleTab('group');
-    userRef.get()
-    .then((users)=> {
-        document.getElementById('group_members').innerHTML = '';   
-        users.forEach((user)=> {
-            if(user.data().name != getCookie('name')){
-                document.getElementById('group_members').innerHTML += '<option value="'+user.data().username+'">'+user.data().name+'</option>';
-            }
-        });
-    })
-    .catch((err)=>{
-        console.log("Error getting userd for making group : ",err);
-    });
-    
+    toggleTab('group');    
     document.querySelector("#group-form").addEventListener('submit',function(e) {
         e.preventDefault();
         var members = [];

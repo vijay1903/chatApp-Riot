@@ -1,6 +1,6 @@
 <forgot>
     <form class="form" id="forgot-form">
-        <h2>Recover Password <span class="close" onclick="toggleTab('')">&#x2613;</span></h2>
+        <h2>Recover Password <span class="close" onclick="toggleTab('')"><img src="img/close.png"></span></h2>
         <label>Username</label>
         <input type="text" name="username" placehodler="Username" minlength="6" maxlength="32" required><br>
         <label>Email</label>

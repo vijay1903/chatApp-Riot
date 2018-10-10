@@ -1,6 +1,6 @@
 <login>
     <form class="form" id="login-form">
-        <h2>Login <span class="close" onclick="toggleTab('')">&#x2613;</span></h2>
+        <h2>Login <span class="close" onclick="toggleTab('')"><img src="img/close.png"></span></h2>
         <label>Username</label>
         <input type="text" name="username" placeholder="abcd1234" minlength="4" maxlength="32" required><br>
         <label>Password</label>

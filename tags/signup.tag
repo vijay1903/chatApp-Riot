@@ -1,6 +1,6 @@
 <signup>
     <form class="form" id="signup-form">
-        <h2>Signup <span class="close" onclick="toggleTab('')">&#x2613;</span></h2>
+        <h2>Signup <span class="close" onclick="toggleTab('')"><img src="img/close.png"></span></h2>
         <label>UserName</label>
         <input type="text" name="username" maxlength="32" minlength="6" required><br>
         <label>Name</label>
