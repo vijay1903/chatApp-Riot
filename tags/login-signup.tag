@@ -7,9 +7,9 @@
         <button class='btn' id="showForgot">Forgot password</button>
     </div>
     <br>
-    <signup class="form"></signup>
+    <login></login>
     <br>
-    <login class="form"></login>
+    <signup></signup>
     <br>
-    <forgot class="form"></forgot>
+    <forgot></forgot>
 </login-signup>

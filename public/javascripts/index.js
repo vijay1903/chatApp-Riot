@@ -4,18 +4,15 @@ var loginForm = document.querySelector('login-signup login #login-form');
 var forgotForm = document.querySelector('login-signup forgot #forgot-form');
 var verifyButton = document.querySelector('login-signup forgot #verifyAccount');
 if(getCookie('username')){
-    window.open('/main','_self');
+    window.open('/main.html','_self');
 };
-// hashing function
-var hash = function(s){
-    return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              
-}
+
 
 //console.log(hash("password"));
 // Adding a user to the list
 signUpForm.addEventListener('submit', function(event){
     event.preventDefault();
-    console.log(this);
+    // console.log(this);
     if(this.pass.value == this.pass2.value){
         var signupthis = this;
         userRef
@@ -65,20 +62,21 @@ loginForm.addEventListener('submit', function(event){
         if(user.docs.length == 1){
             userRef.doc(loginformthis.username.value).update({
                 lastLogin: new Date()
+            }).then(()=>{
+                user.docs.forEach(doc => {
+                    // console.log(doc.data().username);
+                    setCookie("username",doc.data().username,24,"/");
+                    setCookie("name",doc.data().name,24,"/");
+                    setCookie("email",doc.data().email,24,"/");
+                    if(doc.data().password === hash(loginformthis.pass.value)){
+                        // createSession(loginformthis.username.value);
+                        console.log('Login Successful.');
+                        setTimeout(window.open('main.html','_self'),2000);
+                    } else {
+                        window.alert('Wrong Username or Password.');
+                    }
+                });
             })
-            user.docs.forEach(doc => {
-                // console.log(doc.data().username);
-                setCookie("username",doc.data().username,24,"/");
-                setCookie("name",doc.data().name,24,"/");
-                setCookie("email",doc.data().email,24,"/");
-                if(doc.data().password === hash(loginformthis.pass.value)){
-                    // createSession(loginformthis.username.value);
-                    console.log('Login Successful.');
-                    setTimeout(window.open('main.html','_self'),2000);
-                } else {
-                    window.alert('Wrong Username or Password.');
-                }
-            });
             //document.getElementById("cookies").innerHTML = document.cookie;
         } else {
             window.alert('Incorrect username or password.');

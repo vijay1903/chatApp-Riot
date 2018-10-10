@@ -1,7 +1,36 @@
 /* navibar */
 * {
-    font-family: fantasy;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.close {
+    float: right;
+    border-radius: 25px;
+    height: 25px;
+    width: 25px;
+    transition: all 0.3s linear;
+}
+.close:hover{
+    box-shadow: 0px 0px 15px black;
+}
+
+.deleteChat {
+    float: right;
+}
+
+account {
+    position: relative;
+    display: none;
+    top: 10vh;
+    text-align: center;
+}
+group {
+    position: relative;
+    display: none;
+    top: 10vh;
+    text-align: center;
+}
+
 .navbar {
     font-size:1rem;
     height: 50px;
@@ -14,12 +43,22 @@
     vertical-align: middle;
     padding:5px;
 }
+
 .title {
+    display: flex;
     vertical-align: middle;
     margin: 10px;
     margin-left: 5vw;
     margin-right: 7vw;
+    animation: glow 3s linear 0s infinite;
 }
+
+@keyframes glow {
+    0% {text-shadow: 1px 1px 2px whitesmoke}
+    50% {text-shadow: 1px 1px 3px black}
+    100% {text-shadow: 1px 1px 2px whitesmoke}
+}
+
 .navbar-input {
     border-radius: 5px;
     position: relative;
@@ -29,17 +68,23 @@
     padding: 0px 25px;
     transition: all 0.3s linear;
 }
+
+#collapseBtn {
+    display: none;
+}
+
 .navbar-input:focus {
     outline: none;
     box-shadow: 0 0 16px 3px #00fff3;
 }
+
 .btn {
     background-color: rgb(38, 177, 231);
     margin: 5px;
     padding: 5px 10px;
     font-size: 0.8rem;
     color: black;
-    border-radius: 25px;
+    border-radius: 5px;
     transition: all 0.2s linear;
     box-shadow: 2px 2px 3px black;
     border: 1px solid rgb(96, 200, 241);
@@ -53,6 +98,7 @@
 .btn-danger{
     background-color: orange;
 }
+
 .btn-danger:hover{
     background-color: rgb(255, 190, 68);
 }
@@ -68,7 +114,7 @@
 }
 
 .dropdown-list {
-    display:none;
+    display: none;
     float: right;
     margin-right: 25px;
     width: 10%;
@@ -87,7 +133,7 @@ sidenav{
     width:20vw;
     height:100vh;
     position:fixed;
-    margin-top:50px;
+    margin-top:42px;
     background-color: dodgerblue;
     color:whitesmoke;
 }
@@ -117,8 +163,6 @@ sidenav{
 .sidenav-list li button {
     padding: 5px 20px;
     width: 100%;
-    /* margin: 5px;
-    border-radius: 10px; */
     background: lavenderblush;
     font-size: 1rem;
     text-align: left;
@@ -144,19 +188,23 @@ main {
     position: absolute;
     margin-left: 20vw;
     margin-top: 50px;
-    /* padding: 2vw; */
     width: 79vw;
     height: 86vh;
+}
+
+.chatbar {
+    position: relative;
+    top: 0px;
+    font-size: 1.2rem;
+    padding: 1vw 2vw;
+    background-color: #2298f96b;
+    z-index: 2;
 }
 .chatWrapper{
     width:100%;
     overflow-y:auto;
-    /* border:1px solid red; */
-    height: 100%;
+    height: 89%;
 }
-/* .chats {
-    border:1px solid black;
-} */
 .message-form {
     width: 100%;
     position: fixed;
@@ -184,6 +232,7 @@ main {
 }
 
 .chat-list-item{
+    font-size: 1.2rem!important;
     box-shadow: 0px 0px 10px #3f96ef;
     border-radius: 20px;
     padding: 10px;
@@ -199,4 +248,92 @@ main {
 .chat-received {
     margin-right: 20vw;
     text-align: left;
+}
+sub {
+    font-size: 0.8rem!important;
+}
+
+.form {
+    position: absolute;
+    top: 5vh;
+    left: 25vw;
+    box-shadow: 0px 0px 20px darkolivegreen;
+    padding: 15px;
+    min-width: 25vw;
+}
+
+.form-input {
+    border-radius: 5px;
+    width: 70%;
+    font-size: 1rem;
+    margin: 15px;
+    line-height: 2rem;
+    padding: 0px 25px;
+    transition: all 0.3s linear;
+}
+
+.members {
+    border-radius: 5px;
+    font-size: 1rem;
+    margin: 10px;
+    padding: 0px 25px;
+    transition: all 0.3s linear;
+}
+
+@media screen and (max-width:600px) {
+    * {
+        font-size: 1rem;
+    }
+    sub {
+        font-size: 0.5rem!important;
+    }
+    .title {
+        margin: 5px;
+        font-size: 1.5rem;
+        padding: 5px 0px;
+        width: 50%;
+    }
+    .chatbar {
+        text-align : center;
+    }
+    .dropdown {
+        display: inline-flex;
+        padding: 0px;
+        width: 35%;
+    }
+    sidenav {
+        width:100%;
+        height:82vh;
+        visibility: hidden;
+    }
+    .sidenav-footer {
+        bottom: 10%;
+        width: 100%;
+    }
+    .navbar {
+        padding:0;
+    }
+    .navbar-input {
+        display: none;
+    }
+    #usernameBtn {
+        padding: 0px 5px;
+    }
+    .message-form {
+        width: 100%;
+    }
+    .message-input {
+        width: 65%;
+    }
+    main {
+        margin: 0px;
+        width: 100vw;
+        height: 87vh;
+        top: 7%;
+        position: absolute;
+        visibility: initial;
+    }
+    #collapseBtn {
+        display: initial;
+    }
 }
