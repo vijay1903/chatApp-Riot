@@ -1,4 +1,4 @@
-# chatApp-Riot
+# ChatsApp
 This is a real-time chat application using Google Firebase firestore and riot.js framework.
 The application is hosted on Google firebase hosting.
 
